@@ -83,30 +83,6 @@
 
                     </div>
 
-                    <div class="form-group <?php if(form_error('username')) { echo 'has-error'; } ?>">
-                      
-                      <label for="username" class="col-sm-2 control-label">Username</label>
-                      
-                      <div class="col-sm-9">
-
-                        <div class="input-group">
-
-                          <input type="text" class="form-control" id="username" name="username" value="<?php echo $admin['username'] ?>">
-
-                          <div class="input-group-addon">
-
-                            <i class="icon-user"></i>
-
-                          </div>
-
-                        </div>
-
-                        <span class="help-block"> <?php echo form_error('username'); ?></span> 
-
-                      </div>
-
-                    </div>
-
                     <div class="form-group <?php if(form_error('password')) { echo 'has-error'; } ?>">
                       
                       <label for="password" class="col-sm-2 control-label">Password</label>

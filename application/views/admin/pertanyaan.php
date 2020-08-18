@@ -141,7 +141,7 @@
 
           <div class="form-group">
 
-            <label for="kode_pertanyaan" class="control-label mb-10">Kode pertanyaan</label>
+            <label for="kode_pertanyaan" class="control-label mb-10">No pertanyaan</label>
 
             <input type="text" class="form-control" id="kode_pertanyaan" name="kode_pertanyaan">
 

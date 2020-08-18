@@ -3425,7 +3425,7 @@ body.search-open #search .search-suggestion:nth-child(3) {
 
 #side-panel {
     opacity: 0;
-    background-color: #eee;
+    background-color: #FFFFFF;
     height: 100%;
     width: 300px;
     position: fixed;
@@ -3474,7 +3474,7 @@ body.search-open #search .search-suggestion:nth-child(3) {
 }
 
 #side-panel.dark {
-    background-color: #181818
+    background-color: #FFFFFF;
 }
 
 #side-panel.dark #close-panel>i {

@@ -27,7 +27,7 @@
                         
                         <th>Nama admin</th>
 
-                        <th>Username</th>
+                        <th>Email</th>
 
                         <th>Aksi</th>
 
@@ -45,11 +45,11 @@
                         
                         <th>Nama admin</th>
 
-                        <th>Username</th>
+                        <th>Email</th>
 
                         <th>Aksi</th>
 
-                     </tr>
+                      </tr>
 
                     </tfoot>
 
@@ -71,7 +71,7 @@
 
                           <td><?php echo $row['nama_admin']; ?></td>
 
-                          <td><?php echo $row['username']; ?></td>
+                          <td><?php echo $row['email']; ?></td>
 
                           <td>
 
@@ -155,7 +155,7 @@
 
             <label for="kode_admin" class="control-label mb-10">Kode admin</label>
 
-            <input type="text" class="form-control" id="kode_admin" name="kode_admin">
+            <input type="text" class="form-control" id="kode_admin" name="kode_admin" value="<?php echo $auto_kode_admin; ?>">
 
           </div>
 
@@ -166,14 +166,14 @@
             <input type="text" class="form-control" id="nama_admin" name="nama_admin">
 
           </div>   
-
+          
           <div class="form-group">
 
-            <label for="username" class="control-label mb-10">Username</label>
+            <label for="email" class="control-label mb-10">Email</label>
 
-            <input type="text" class="form-control" id="username" name="username">
+            <input type="email" class="form-control" id="email" name="email">
 
-          </div>
+          </div>   
 
           <div class="form-group">
 

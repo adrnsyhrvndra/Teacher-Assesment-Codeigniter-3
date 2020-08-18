@@ -4,27 +4,27 @@
 
 <head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico">
 
-<title><?php echo $judul; ?></title>
+	<title><?php echo $judul; ?></title>
 
-<link href="<?php echo base_url(); ?>assets/css_login/style.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css_login/style.css" rel="stylesheet">
 
-<link href="<?php echo base_url(); ?>assets/css_login/plugins.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/css_login/plugins.css" rel="stylesheet">
 
-<!--alerts CSS -->
+	<!--alerts CSS -->
 
-<link href="<?php echo base_url(); ?>assets/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/vendors/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <style>
-	
+
 	@font-face {
 
 		font-family: 'font awesome 5 free';
@@ -63,5 +63,4 @@
 
 		src: url(<?php echo base_url(); ?>assets/webfonts/fa-brands-400d41d.eot?#iefix) format("embedded-opentype"), url(<?php echo base_url(); ?>assets/webfonts/fa-brands-400.woff2) format("woff2"), url(<?php echo base_url(); ?>assets/webfonts/fa-brands-400.woff) format("woff"), url(<?php echo base_url(); ?>assets/webfonts/fa-brands-400.ttf) format("truetype"), url(<?php echo base_url(); ?>assets/webfonts/fa-brands-400.svg#fontawesome) format("svg")
 	}
-
 </style>

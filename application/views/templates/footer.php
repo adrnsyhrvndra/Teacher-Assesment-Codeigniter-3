@@ -4,6 +4,8 @@
 
 <script src="<?php echo base_url(); ?>assets/js_login/functions.js"></script>
 
+<script src="<?php echo base_url(); ?>assets/metafizzy/infinite-scroll.min.js"></script>
+
 <!-- Sweet Alert -->
 
 <script src="<?php echo base_url(); ?>assets/vendors/bower_components/sweetalert/dist/sweetalert.min.js"></script>

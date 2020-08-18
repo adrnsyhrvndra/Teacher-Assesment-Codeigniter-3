@@ -20,13 +20,12 @@ class Pengajaran_model extends CI_MODEL{
 
 		return $query = $this->db->get()->result_array();
 
-
 	}
 
 	public function getPengajaranByKodePengajaran($kode_pengajaran){
 
 		return $this->db->get_where('tb_pengajaran',['kode_pengajaran' => $kode_pengajaran])->row_array();
-
+		
 	}
 
 	public function pengajaranTambahData(){

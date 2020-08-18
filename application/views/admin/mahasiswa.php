@@ -29,8 +29,6 @@
 
                         <th>Kelas</th>
 
-                        <th>Username</th>
-
                         <th>Aksi</th>
 
                       </tr>
@@ -49,11 +47,9 @@
 
                         <th>Kelas</th>
 
-                        <th>Username</th>
-
                         <th>Aksi</th>
 
-                     </tr>
+                      </tr>
 
                     </tfoot>
 
@@ -76,8 +72,6 @@
                           <td><?php echo $row['nama']; ?></td>
 
                           <td><?php echo $row['kelas']; ?></td>
-
-                          <td><?php echo $row['username']; ?></td>
 
                           <td>
 

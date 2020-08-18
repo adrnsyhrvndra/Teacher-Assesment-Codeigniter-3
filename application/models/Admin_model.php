@@ -19,8 +19,8 @@ class Admin_model extends CI_MODEL{
 
 			"kode_admin"	=> $this->input->post('kode_admin', true),
 			"nama_admin" 	=> $this->input->post('nama_admin', true),
-			"username" 		=> $this->input->post('username', true),
-			"password" 		=> $this->input->post('password', true)
+			"email" 		=> $this->input->post('email', true),
+			"password"		=> password_hash($this->input->post('password'), PASSWORD_DEFAULT)
 
 		];
 
@@ -33,7 +33,7 @@ class Admin_model extends CI_MODEL{
 
 			"kode_admin"	=> $this->input->post('kode_admin', true),
 			"nama_admin" 	=> $this->input->post('nama_admin', true),
-			"username" 		=> $this->input->post('username', true),
+			"email" 		=> $this->input->post('email', true),
 			"password" 		=> password_hash($this->input->post('password', true), PASSWORD_DEFAULT)
 
 		];
@@ -48,6 +48,35 @@ class Admin_model extends CI_MODEL{
 
 		$this->db->delete('tb_admin',['kode_admin' => $kode_admin]);
 
+	}
+
+	public function autoKodeAdmin(){
+
+		$this->db->select('RIGHT(tb_admin.kode_admin,7) as autokodeadmin', FALSE);
+
+		$this->db->order_by('kode_admin', 'DESC');
+
+		$this->db->limit(1);
+
+		$query = $this->db->get('tb_admin');
+
+		if ($query->num_rows() != 0) {
+
+			$data = $query->row();
+
+			$autokodeadmin = intval($data->autokodeadmin) + 1;
+		} 
+		
+		else {
+
+			$autokodeadmin = 1;
+		}
+
+		$kode_admin_max = str_pad($autokodeadmin, 7, "0", STR_PAD_LEFT);
+
+		$kode_admin_jadi = "ADM" . $kode_admin_max;
+
+		return $kode_admin_jadi;
 	}
 
 }

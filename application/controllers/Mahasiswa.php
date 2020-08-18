@@ -108,11 +108,95 @@ class Mahasiswa extends CI_Controller {
 				$index++;
 			}
 
-			return $this->db->insert_batch('tb_jawaban_skala', $data);
+			$this->Mahasiswa_model->tambahDataJawaban($data);
+
+			redirect('mahasiswa/evaluasi');
 
 		}
 
 	}
 
+	public function evaluasi(){
+
+		$data['identitas'] = $this->db->get_where('tb_mhs', ['nim' => $this->session->userdata('nim'),'kelas' => $this->session->userdata('kelas')])->row_array();
+
+		$data['evaluasi_mahasiswa'] = $this->Mahasiswa_model->evaluasiMahasiswa();
+
+		$data['auto_kode_sesi'] = $this->Mahasiswa_model->autoKodeSesi();
+
+		$data['pertanyaan'] = $this->Pertanyaan_model->getAllPertanyaan();
+
+		$data['max_pertanyaan'] = $this->Mahasiswa_model->DataMaxPertanyaan();
+
+		$data['matkul'] = $this->Matkul_model->getAllMatkul();
+
+		$this->form_validation->set_rules('nim', 'nim', 'required|trim');
+
+		$this->form_validation->set_rules('sesi[]', 'sesi', 'required|trim');
+
+		$this->form_validation->set_rules('kode_dosen[]', 'kode dosen', 'required|trim');
+
+		$this->form_validation->set_rules('kode_matkul[]', 'kode matkul', 'required|trim');
+
+		$this->form_validation->set_rules('dipertahankan[]', 'dipertahankan', 'required');
+
+		$this->form_validation->set_rules('ditingkatkan[]', 'ditingkatkan', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$data['judul'] = 'Polban | Halaman evaluasi';
+
+			$this->load->view('templates/header',$data);
+
+			$this->load->view('mahasiswa/evaluasi',$data);
+
+			$this->load->view('templates/footer');
+
+		} else {
+
+			$nim 				= $this->input->post('nim');
+
+			$sesi 				= $this->input->post('sesi[]');
+
+			$kode_dosen 		= $this->input->post('kode_dosen[]');
+
+			$kode_matkul 		= $this->input->post('kode_matkul[]');
+
+			$ditingkatkan 		= $this->input->post('ditingkatkan[]');
+
+			$dipertahankan 		= $this->input->post('dipertahankan[]');
+
+			$data = array();
+		
+			$index = 0;
+
+			foreach($sesi as $datasesi){ 
+
+				array_push($data, array(
+
+					'sesi'				=>$sesi[$index],  
+
+					'nim'				=>$nim,
+
+					'kode_dosen'		=>$kode_dosen[$index],
+
+					'kode_matkul'		=>$kode_matkul[$index], 
+
+					'ditingkatkan'		=>$ditingkatkan[$index],
+
+					'dipertahankan'		=>$dipertahankan[$index]
+
+				));
+				
+				$index++;
+		}
+
+		$this->Mahasiswa_model->tambahDataJawabanEsai($data);
+
+		redirect('login/logout');
+
+		}
+
+	}
 
 }

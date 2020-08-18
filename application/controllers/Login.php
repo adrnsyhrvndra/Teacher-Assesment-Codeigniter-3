@@ -18,8 +18,6 @@ class Login extends CI_Controller {
 
 		$this->form_validation->set_rules('email', 'alamat email', 'required|trim|valid_email');
 
-		$this->form_validation->set_rules('username', 'username', 'required|trim');
-
 		$this->form_validation->set_rules('password', 'password', 'required|trim');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -47,8 +45,6 @@ class Login extends CI_Controller {
 
 		$email 		= $this->input->post('email');
 
-		$username 	= $this->input->post('username');
-
 		$password 	= $this->input->post('password');
 
 		$mahasiswa 	= $this->db->get_where('tb_mhs', ['email' => $email])->row_array();
@@ -65,7 +61,7 @@ class Login extends CI_Controller {
 
 				// Cek password
 
-				if($username == $mahasiswa['username']  && password_verify($password, $mahasiswa['password'])){
+				if(password_verify($password, $mahasiswa['password'])){
 
 					$data = [
 
@@ -80,7 +76,7 @@ class Login extends CI_Controller {
 
 				} else {
 
-					$this->session->set_flashdata('flashgagal',' login gagal,cek kembali username dan passwordmu');
+					$this->session->set_flashdata('flashgagal',' login gagal,cek kembali passwordmu');
 
 					redirect('login/index');
 
@@ -95,7 +91,7 @@ class Login extends CI_Controller {
 
 		} elseif($admin) {
 
-			if($username == $admin['username'] && password_verify($password, $admin['password'])){
+			if(password_verify($password, $admin['password'])){
 
 				$data = [
 
@@ -140,15 +136,13 @@ class Login extends CI_Controller {
 
 		$this->form_validation->set_rules('email', 'alamat email', 'required|trim|valid_email|is_unique[tb_mhs.email]');
 
-		$this->form_validation->set_rules('username', 'username', 'required|min_length[6]|max_length[15]|is_unique[tb_mhs.username]|trim');
-
 		$this->form_validation->set_rules('password1', 'password', 'required|min_length[6]|max_length[15]|matches[password2]|trim');
 
 		$this->form_validation->set_rules('password2', 'confirm password', 'required|matches[password1]|trim');
 
 		if ($this->form_validation->run() == FALSE){
-
-		 	$data['judul'] = 'Polban | Halaman register';
+			
+			$data['judul'] = 'Polban | Halaman register';
 
 			$this->load->view('templates/header',$data);
 
@@ -173,8 +167,6 @@ class Login extends CI_Controller {
 				"email"				=> htmlspecialchars($this->input->post('email', true)),
 
 				"aktifasi"			=> 0,
-
-				"username"			=> htmlspecialchars($this->input->post('username', true)),
 
 				"password"			=> password_hash($this->input->post('password1'), PASSWORD_DEFAULT)
 
@@ -374,14 +366,13 @@ class Login extends CI_Controller {
 
 			$this->load->view('templates/footer');
 
-
 		}
 
 		else {
 
-			$password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+			$password 	= password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
 
-			$email 	  = $this->session->userdata('reset_email');
+			$email 	  	= $this->session->userdata('reset_email');
 
 			$this->db->set('password', $password);
 
@@ -425,7 +416,7 @@ class Login extends CI_Controller {
 
 		$this->email->initialize($config); 
 
-		$this->email->from('adrimedia.indonesia@gmail.com', 'Adriansyah Ravindra');
+		$this->email->from('adrimedia.indonesia@gmail.com', 'Adrimedia');
 
 		$this->email->to($this->input->post('email'));
 

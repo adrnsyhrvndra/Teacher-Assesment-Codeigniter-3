@@ -23,9 +23,9 @@
 
                         <th>No</th>
 
-                        <th>Kode admin</th>
+                        <th>Kode dosen</th>
                         
-                        <th>Nama admin</th>
+                        <th>Nama dosen</th>
 
                         <th>Aksi</th>
 
@@ -39,9 +39,9 @@
 
                         <th>No</th>
 
-                        <th>Kode admin</th>
+                        <th>Kode dosen</th>
                         
-                        <th>Nama admin</th>
+                        <th>Nama dosen</th>
 
                         <th>Aksi</th>
 

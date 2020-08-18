@@ -26,7 +26,11 @@ class Admin extends CI_Controller {
 
 		$this->load->model('Pengajaran_model');
 
+		$this->load->model('Jawaban_model');
+
 		$this->load->library('form_validation');
+
+		$this->load->library('session');
 
 		$this->load->helper('date');
 
@@ -34,9 +38,29 @@ class Admin extends CI_Controller {
 
 	public function index(){
 
+		// var_dump($data);
+
+		// echo $data->main->temp_max;
+
+		// echo $data->main->temp_min;
+		
 		$data['judul'] = 'Admin page';
 
 		$data['Namaku'] = $this->db->get_where('tb_admin', ['kode_admin' => $this->session->userdata('kode_admin')])->row_array();
+
+		$data['jumlahdatamahasiswa'] = $this->db->count_all('tb_mhs');
+
+		$data['jumlahdatadosen'] = $this->db->count_all('tb_dosen');
+
+		$data['jumlahdatamatkul'] = $this->db->count_all('tb_matkul');
+
+		$data['jumlahdatapertanyaan'] = $this->db->count_all('tb_pertanyaan');
+
+		$data['jumlahdatapengajaran'] = $this->db->count_all('tb_pengajaran');
+
+		$data['jumlahdatajawabanskala'] = $this->db->count_all('tb_jawaban_skala');
+
+		$data['jumlahdatajawabanesai'] = $this->db->count_all('tb_jawaban_esai');
 
 		$this->load->view('templatesadmin/header', $data);
 
@@ -76,19 +100,19 @@ class Admin extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE){
 
-		 	redirect('admin/pertanyaan');
+			redirect('admin/pertanyaan');
 
-		 }
+		}
 
-		 else{
+		else{
 
             $this->Pertanyaan_model->tambahDataPertanyaan();
 
             $this->session->set_flashdata('flash','ditambah');
 
-            redirect('admin/pertanyaan');
-         
-         }
+			redirect('admin/pertanyaan');
+			
+        }
 
 
 	}
@@ -109,25 +133,25 @@ class Admin extends CI_Controller {
 
 		$this->form_validation->set_rules('pertanyaan', 'pertanyaan', 'required');
 
-		 if ($this->form_validation->run() == FALSE){
+			if ($this->form_validation->run() == FALSE){
 
-		 	$this->load->view('templatesadmin/header', $data);
+			$this->load->view('templatesadmin/header', $data);
 
 			$this->load->view('admin/pertanyaan_edit', $data);
 
 			$this->load->view('templatesadmin/footer');
 
-		 }
+		}
 
-		 else{
+		else{
 
             $this->Pertanyaan_model->pertanyaanEdit($kode_pertanyaan);
 
             $this->session->set_flashdata('flash','diubah');
 
             redirect('admin/pertanyaan');
-         
-         }
+
+        }
 		
 	}
 
@@ -146,6 +170,8 @@ class Admin extends CI_Controller {
 	public function admin(){
 
 		$this->load->model('Admin_model');
+
+		$data['auto_kode_admin'] = $this->Admin_model->autoKodeAdmin();
 
 		$data['Namaku'] = $this->db->get_where('tb_admin', ['kode_admin' => $this->session->userdata('kode_admin')])->row_array();
 
@@ -169,30 +195,29 @@ class Admin extends CI_Controller {
 
 		$this->load->library('form_validation');
 
+		$data['auto_kode_admin'] = $this->Admin_model->autoKodeAdmin();
+
 		$this->form_validation->set_rules('kode_admin', 'kode admin', 'required');
 
 		$this->form_validation->set_rules('nama_admin', 'nama admin', 'required');
 
-		$this->form_validation->set_rules('username', 'username', 'required');
-
 		$this->form_validation->set_rules('password', 'password', 'required');
 
 		if ($this->form_validation->run() == FALSE){
+			
+			redirect('admin/pertanyaan');
 
-		 	redirect('admin/pertanyaan');
+		}
 
-		 }
-
-		 else{
+		else{
 
             $this->Admin_model->tambahDataAdmin();
 
             $this->session->set_flashdata('flash','ditambah');
 
             redirect('admin/admin');
-         
-         }
-
+		
+		}
 
 	}
 
@@ -214,41 +239,39 @@ class Admin extends CI_Controller {
 
 		$this->form_validation->set_rules('email', 'alamat email', 'required|trim|valid_email');
 
-		$this->form_validation->set_rules('username', 'username', 'required|trim');
-
 		$this->form_validation->set_rules('password', 'password', 'required|trim');
 
-		 if ($this->form_validation->run() == FALSE){
+		if ($this->form_validation->run() == FALSE){
 
-		 	$this->load->view('templatesadmin/header', $data);
+			$this->load->view('templatesadmin/header', $data);
 
 			$this->load->view('admin/admin_edit', $data);
 
 			$this->load->view('templatesadmin/footer');
 
-		 }
+		}
 
-		 else{
+		else{
 
-		 	$password = $this->input->post('password');
+			$password = $this->input->post('password');
 
-		 	if(password_verify($password, $data['Namaku']['password'])){
+			if(password_verify($password, $data['Namaku']['password'])){
 
-		 		$this->Admin_model->adminEdit($kode_admin);
+				$this->Admin_model->adminEdit($kode_admin);
 
 	            $this->session->set_flashdata('flash','diubah');
 
 	            redirect('admin/admin');	
 
-		 	} else {
+			} else {
 
-		 		$this->session->set_flashdata('flashgagal',' edit data gagal');
+				$this->session->set_flashdata('flashgagal',' edit data gagal');
 
-		 		redirect('admin/admin');
+				redirect('admin/admin');
 
-		 	}  
-         
-         }
+			}  
+
+		}
 		
 	}
 
@@ -379,7 +402,6 @@ class Admin extends CI_Controller {
             redirect('admin/matkul');
          
          }
-
 
 	}
 
@@ -689,6 +711,152 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('flash','dihapus');
 
 		redirect('admin/pengajaran');
+
+	}
+
+	public function pilih_jawaban_skala(){
+
+		$this->load->model('Jawaban_model');
+
+		$this->load->model('Dosen_model');
+
+		$data['dosen'] = $this->Dosen_model->getAllDosen();
+
+		$data['pengajaran'] = $this->Pengajaran_model->getAllPengajaran();
+
+		$data['Namaku'] = $this->db->get_where('tb_admin', ['kode_admin' => $this->session->userdata('kode_admin')])->row_array();
+
+		$this->load->library('form_validation');
+
+		$this->load->library('session');
+
+		$this->form_validation->set_rules('kode_dosen', 'kode_dosen', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$data['judul'] = 'Admin page';
+
+			$this->load->view('templatesadmin/header', $data);
+
+			$this->load->view('admin/pilih_jawaban_skala', $data);
+
+			$this->load->view('templatesadmin/footer');
+
+		} else {
+
+			$kode_dosen 	= $this->input->post('kode_dosen');
+
+			$dosen 			= $this->db->get_where('tb_dosen', ['kode_dosen' => $kode_dosen])->row_array();
+
+			if($dosen){
+
+				$data = [
+
+					"kode_dosen"	=> $dosen['kode_dosen'],
+					"nama_dosen"	=> $dosen['nama_dosen']
+				];
+
+				$this->session->set_userdata($data);
+
+				redirect('admin/jawaban_skala');
+
+			}
+
+		}
+
+	}
+
+	public function jawaban_skala(){
+
+		$this->load->model('Jawaban_model');
+
+		$data['judul'] 		= 'Admin page';
+
+		$data['Namaku'] 	= $this->db->get_where('tb_admin', ['kode_admin' => $this->session->userdata('kode_admin')])->row_array();
+
+		$data['data_dosen'] = $this->db->get_where('tb_dosen', ['kode_dosen' => $this->session->userdata('kode_dosen')])->row_array();
+
+		$data['jawaban'] 	= $this->Jawaban_model->getAllJawabanBynim();
+
+		$this->load->view('templatesadmin/header', $data);
+
+		$this->load->view('admin/jawaban_skala', $data);
+
+		$this->load->view('templatesadmin/footer');
+
+	}
+
+	public function pilih_jawaban_esai(){
+
+		$this->load->model('Jawaban_model');
+
+		$this->load->model('Dosen_model');
+
+		$data['dosen'] = $this->Dosen_model->getAllDosen();
+
+		$data['pengajaran'] = $this->Pengajaran_model->getAllPengajaran();
+
+		$data['Namaku'] = $this->db->get_where('tb_admin', ['kode_admin' => $this->session->userdata('kode_admin')])->row_array();
+
+		$this->load->library('form_validation');
+
+		$this->load->library('session');
+
+		$this->form_validation->set_rules('kode_dosen', 'kode_dosen', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$data['judul'] = 'Admin page';
+
+			$this->load->view('templatesadmin/header', $data);
+
+			$this->load->view('admin/pilih_jawaban_esai', $data);
+
+			$this->load->view('templatesadmin/footer');
+
+		} else {
+
+			$kode_dosen 	= $this->input->post('kode_dosen');
+
+			$dosen 			= $this->db->get_where('tb_dosen', ['kode_dosen' => $kode_dosen])->row_array();
+
+			if($dosen){
+
+				$data = [
+
+					"kode_dosen"	=> $dosen['kode_dosen'],
+					"nama_dosen"	=> $dosen['nama_dosen']
+				];
+
+				$this->session->set_userdata($data);
+
+				redirect('admin/jawaban_esai');
+
+			}
+
+		}
+
+	}
+
+	public function jawaban_esai(){
+
+		$this->load->model('Jawaban_model');
+
+		$data['judul'] 		= 'Admin page';
+
+		$data['Namaku'] 	= $this->db->get_where('tb_admin', ['kode_admin' => $this->session->userdata('kode_admin')])->row_array();
+
+		$data['data_dosen'] = $this->db->get_where('tb_dosen', ['kode_dosen' => $this->session->userdata('kode_dosen')])->row_array();
+
+		$data['datku'] 		= $this->db->get_where('tb_jawaban_esai', ['nim' => $this->session->userdata('nim')])->row_array();
+
+		$data['jawaban'] 	= $this->Jawaban_model->getAllJawabanBynim2();
+
+		$this->load->view('templatesadmin/header', $data);
+
+		$this->load->view('admin/jawaban_esai', $data);
+
+		$this->load->view('templatesadmin/footer');
 
 	}
 

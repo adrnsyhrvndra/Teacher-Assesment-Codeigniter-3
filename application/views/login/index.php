@@ -1,107 +1,215 @@
-<body>
+<body class="side-panel side-panel-static">
 
-<div class="body-inner">
+    <div id="side-panel" class="text-center dark">
 
-    <section>
+        <div id="close-panel">
 
-        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
+            <i class="fa fa-times"></i>
 
-        <div class="flash-data-gagal" data-flashdata="<?= $this->session->flashdata('flashgagal'); ?>"></div>
+        </div>
 
-        <div class="flash-data-email" data-flashdata="<?= $this->session->flashdata('flashaktifasi'); ?>"></div>
+        <div class="side-panel-wrap">
 
-        <div class="container">
+            <div class="text-dark text-center">
 
-            <div class="mt-1">
+                <img src="<?php echo base_url(); ?>assets/img/Polban-3.png" alt="Polban logo">
 
-                <div class="text-center m-b-30" >
+            </div>
 
-                    <img src="<?php echo base_url(); ?>assets/img/Polban panjang.png" alt="Polban logo" >
+            <div class="widget text-light text-center text-dark">
 
-                </div>
+                <h4 class="widget-title">Teacher assesment</h4>
 
-                <div class="row mt-3">
+                <p style="line-height:35px;">
 
-                    <div class="col-sm-10 col-lg-7 col-md-7 col-xl-7 center p-50 background-white b-r-6" style="box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);">
+                    ini adalah aplikasi untuk melakukan penilaian terhadap dosen
 
-                        <h4 class="col-sm-12 col-md-12 col-lg-12 col-xl-12">Login dengan akunmu</h4>
+                </p>
 
-                        <form role="form" method="POST" action="<?php echo base_url(); ?>login/index">
+            </div>
 
-                            <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">
+            <div class="social-icons social-icons-medium social-icons-border social-icons-rounded social-icons-colored-hover text-center">
 
-                                <?php echo form_error('email','<small class="text-danger">','</small>'); ?>
+                <h5>Support the creator</h5>
 
-                                <input name="email" type="text" class="form-control" placeholder="email address" value="<?php echo set_value('email'); ?>">
+                <ul class="mt-3">
 
-                            </div>
+                    <li class="social-facebook px-1">
 
-                            <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">
+                        <a href="https://www.facebook.com/adrimedia.donnyvidi">
 
-                                <?php echo form_error('username','<small class="text-danger">','</small>'); ?>
+                            <i class="fab fa-facebook-f"></i>
 
-                                <input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo set_value('username'); ?>">
+                        </a>
 
-                            </div>
+                    </li>
 
-                            <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">
+                    <li class="social-youtube px-1">
 
-                                <?php echo form_error('password','<small class="text-danger">','</small>'); ?>
+                        <a href=" https://www.youtube.com/channel/UCwz5vQx62tecocSGPGn1o8Q?view_as=subscriber">
 
-                                <input name="password" type="password" class="form-control" placeholder="Password" value="<?php echo set_value('password'); ?>">
+                            <i class="fab fa-youtube"></i>
 
-                            </div>
+                        </a>
 
-                            <div class="text-left col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group mt-4">
+                    </li>
 
-                                <button type="submit" class="btn" name="login">Login</button>
+                    <li class="social-instagram px-1">
 
-                            </div>
+                        <a href="https://www.instagram.com/adrnsyhrvndra/?hl=id">
 
-                        </form>
+                            <i class="fab fa-instagram"></i>
 
-                        <p class="mt-5" style="font-size:13px; text-align:center;">Anda belum mempunyai akun ? 
+                        </a>
 
-                            <a href="<?php echo base_url(); ?>login/register">Register sekarang</a>
+                    </li>
 
-                        </p>
+                    <li class="social-github px-1">
 
-                        <p style="font-size:13px; text-align:center;">
+                        <a href="https://github.com/adrnsyhrvndra">
 
-                            <a href="<?php echo base_url(); ?>login/forgotPassword">Lupa password?</a>
+                            <i class="fab fa-github"></i>
 
-                        </p>
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <p class="small mt-4">
+
+                &copy; <?php echo date("Y"); ?> Polban -
+                All Rights Reserved - Developed by Adriansyah ravindra
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="body-inner">
+
+        <header id="header" class="d-block d-md-none">
+
+            <div class="header-inner">
+
+                <div class="container">
+
+                    <div class="header-extras">
+
+                        <ul>
+
+                            <li>
+
+                                <a id="side-panel-trigger" href="#" class="toggle-item" data-target="body" data-class="side-panel-active">
+
+                                    <i class="fa fa-bars"></i>
+                                    <i class="fa fa-times"></i>
+
+                                </a>
+
+                            </li>
+
+                        </ul>
 
                     </div>
 
                 </div>
 
             </div>
-            
-        </div>
 
-    </section>
+        </header>
 
-    <footer id="footer" style="background:white;">
+        <section class="p-t-50 p-b-50" style="background-image: url('<?php echo base_url(); ?>assets/img/banner.jpg');background-size: cover;">
 
-        <div class="copyright-content" style="background:white; ">
+            <div class="bg-overlay"></div>
 
             <div class="container">
 
-                <div class="copyright-text text-center">
+                <div class="row">
 
-                    &copy; <?php echo date("Y"); ?> Polban - 
-                    All Rights Reserved - Developed by<a href="https://www.instagram.com/adrnsyhrvndra/" target="_blank"> Adriansyah ravindra</a> 
+                    <div class="col-lg-9 center text-center text-light">
+
+                        <h1>Halaman login</h1>
+
+                        <p class="lead">Silahkan login dengan akun anda.jika belum mempunya akun harap registrasi terlebih dahulu</p>
+
+                        <a class="px-1" href="<?php echo base_url(); ?>login/register">
+
+                            <button type="button" class="btn">Register</button>
+
+                        </a>
+
+                        <a class="px-1" href="<?php echo base_url(); ?>login/forgotPassword">
+
+                            <button type="button" class="btn">Lupa password</button>
+
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
-    </footer>
+        <section id="page-content" class="p-t-30 p-b-15">
 
-</div>
+            <div class="container-fluid">
 
-<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+                <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 
+                <div class="flash-data-gagal" data-flashdata="<?= $this->session->flashdata('flashgagal'); ?>"></div>
+
+                <div class="flash-data-email" data-flashdata="<?= $this->session->flashdata('flashaktifasi'); ?>"></div>
+
+                <div class="mt-1">
+
+                    <div class="row mt-3">
+
+                        <div class="col-sm-12 col-lg-12 col-md-12 col-xl-12 col-12 center p-50 background-white b-r-6" style="box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);">
+
+                            <h4 class="col-sm-12 col-md-12 col-lg-12 col-xl-12">Login dengan akunmu</h4>
+
+                            <form role="form" method="POST" action="<?php echo base_url(); ?>login/index">
+
+                                <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">
+
+                                    <?php echo form_error('email', '<small class="text-danger">', '</small>'); ?>
+
+                                    <input name="email" type="text" class="form-control" placeholder="email address" value="<?php echo set_value('email'); ?>">
+
+                                </div>
+
+                                <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">
+
+                                    <?php echo form_error('password', '<small class="text-danger">', '</small>'); ?>
+
+                                    <input name="password" type="password" class="form-control" placeholder="Password" value="<?php echo set_value('password'); ?>">
+
+                                </div>
+
+                                <div class="text-left col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group mt-4">
+
+                                    <button type="submit" class="btn" name="login">Login</button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>

@@ -72,4 +72,16 @@ class Mahasiswa_model extends CI_MODEL{
 
 	}
 
+	public function tambahDataJawaban($data){
+
+		return $this->db->insert_batch('tb_jawaban_skala', $data);
+
+	}
+
+	public function tambahDataJawabanEsai($data){
+
+		return $this->db->insert_batch('tb_jawaban_esai', $data);
+
+	}
+
 }

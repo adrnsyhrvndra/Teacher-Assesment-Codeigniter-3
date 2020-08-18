@@ -370,11 +370,16 @@
 
 				<li>
 
-					<a href="<?php echo base_url(); ?>admin/jawaban_skala">
+					<a href="<?php echo base_url(); ?>admin/pilih_jawaban_skala"
+
+						<?php if($this->uri->segment(2)=="pilih_jawaban_skala" || $this->uri->segment(2)=="jawaban_skala") {echo 'class="active"';}
+
+						?>>
 
 						<div class="pull-left">
 
 							<i class="fa fa-list-ul mr-20"></i>
+
 							<span class="right-nav-text">Data jawaban</span>
 
 						</div>
@@ -383,11 +388,16 @@
 						
 					</a>
 
-					<a href="<?php echo base_url(); ?>admin/jawaban_esai">
+					<a href="<?php echo base_url(); ?>admin/pilih_jawaban_esai"
+					
+						<?php if($this->uri->segment(2)=="pilih_jawaban_esai" || $this->uri->segment(2)=="jawaban_esai") {echo 'class="active"';}
+
+						?>>
 
 						<div class="pull-left">
 
 							<i class="fa fa-list-ul mr-20"></i>
+
 							<span class="right-nav-text">Saran dan masukan</span>
 
 						</div>
@@ -891,6 +901,146 @@
 		                                <span>
 
 		                                    <i class='fa fa-pencil-square-o'></i> edit data pengajaran
+
+		                                </span>
+
+		                            </li>
+
+	                            <?php } ?>
+
+	                            <?php if($this->uri->segment(2)=="pilih_jawaban_skala") { ?>
+
+									<li>   
+
+		                                <span>
+
+		                                    <a href="<?php echo base_url(); ?>admin/index">
+
+			                                	<i class="fa fa-dashboard (alias)"></i> Dashboard
+
+			                              	</a>
+
+		                                </span>
+
+		                            </li>
+
+		                            <li class="active">
+
+		                                <span>
+
+		                                    <i class='fa fa-list-ul'></i> pilih data jawaban nilai
+
+		                                </span>
+
+		                            </li>
+
+	                            <?php } ?>
+	                            
+								<?php if($this->uri->segment(2)=="jawaban_skala") { ?>
+
+									<li>   
+
+		                                <span>
+
+		                                    <a href="<?php echo base_url(); ?>admin/index">
+
+			                                	<i class="fa fa-dashboard (alias)"></i> Dashboard
+
+			                              	</a>
+
+		                                </span>
+
+		                            </li>
+
+		                            <li>
+
+		                                <span>
+
+											<a href="<?php echo base_url(); ?>admin/pilih_jawaban_skala">										
+
+		                                    	<i class='fa fa-list-ul'></i> pilih data jawaban nilai
+
+											</a>
+
+		                                </span>
+
+		                            </li>
+
+									<li class="active">
+
+		                                <span>
+
+											<i class='fa fa-list-ul'></i> data jawaban <?php echo $data_dosen['nama_dosen']; ?> 
+
+		                                </span>
+
+		                            </li>
+
+	                            <?php } ?>
+
+	                            <?php if($this->uri->segment(2)=="pilih_jawaban_esai") { ?>
+
+									<li>   
+
+		                                <span>
+
+		                                    <a href="<?php echo base_url(); ?>admin/index">
+
+			                                	<i class="fa fa-dashboard (alias)"></i> Dashboard
+
+			                              	</a>
+
+		                                </span>
+
+		                            </li>
+
+		                            <li class="active">
+
+		                                <span>
+
+		                                    <i class='fa fa-list-ul'></i> pilih data saran & masukan
+
+		                                </span>
+
+		                            </li>
+
+	                            <?php } ?>
+	                            
+								<?php if($this->uri->segment(2)=="jawaban_esai") { ?>
+
+									<li>   
+
+		                                <span>
+
+		                                    <a href="<?php echo base_url(); ?>admin/index">
+
+			                                	<i class="fa fa-dashboard (alias)"></i> Dashboard
+
+			                              	</a>
+
+		                                </span>
+
+		                            </li>
+
+		                            <li>
+
+		                                <span>
+
+											<a href="<?php echo base_url(); ?>admin/pilih_jawaban_esai">										
+
+		                                    	<i class='fa fa-list-ul'></i> pilih data saran & masukan
+
+											</a>
+
+		                                </span>
+
+		                            </li>
+
+									<li class="active">
+
+		                                <span>
+
+											<i class='fa fa-list-ul'></i> data saran & masukan <?php echo $data_dosen['nama_dosen']; ?> 
 
 		                                </span>
 
