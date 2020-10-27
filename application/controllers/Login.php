@@ -400,7 +400,7 @@ class Login extends CI_Controller {
 
 			"smtp_user" => "adrimedia.indonesia@gmail.com",
 
-			"smtp_pass" => "adridinda",
+			"smtp_pass" => "password anda",
 
 			"smtp_port" => 465,
 
